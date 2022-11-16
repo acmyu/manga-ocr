@@ -453,8 +453,8 @@ function displayOcrBoxes(name, img_gray, data) {
 const OCR_FULL_PAGE = 1;
 const OCR_JPN_VERT = 2;
 const OCR_JPN = 3;
-//const LANG_PATH = 'https://cdn.rawgit.com/naptha/tessdata/gh-pages/4.0.0_best/';
-const LANG_PATH = 'models/';
+const LANG_PATH = 'https://cdn.rawgit.com/naptha/tessdata/gh-pages/4.0.0_best/';
+//const LANG_PATH = 'models/';
 async function getOcrText(input, mode) {
     
     let statusDisplay = document.getElementById('ocr-status');
