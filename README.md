@@ -5,3 +5,5 @@
 - Click "Run"
 - It should process the image, extract speech bubbles and translate the speech bubble text
 - The output should be similar to [examples/sample-output/output.html](https://github.com/acmyu/manga-ocr/blob/master/examples/sample-output/output.html)
+
+![sample output](https://github.com/acmyu/manga-ocr/blob/master/examples/sample-output/output.png?raw=true)
