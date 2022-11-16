@@ -454,9 +454,8 @@ const OCR_FULL_PAGE = 1;
 const OCR_JPN_VERT = 2;
 const OCR_JPN = 3;
 const LANG_PATH = 'https://cdn.rawgit.com/naptha/tessdata/gh-pages/4.0.0_best/';
-//const LANG_PATH = 'models/';
+//const LANG_PATH = '/tessdata/';
 async function getOcrText(input, mode) {
-    
     let statusDisplay = document.getElementById('ocr-status');
     
     let worker;
@@ -464,10 +463,12 @@ async function getOcrText(input, mode) {
         worker = Tesseract.createWorker({
             logger: m => statusDisplay.innerHTML = m.status + " - " + m.progress,
             langPath: LANG_PATH,
+            cacheMethod: 'none'
         });
     } else {
         worker = Tesseract.createWorker({
             langPath: LANG_PATH,
+            cacheMethod: 'none'
         });
     }
 
