@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)file:///C:/Users/amyyu/Documents/Text/manga-translator/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8.png">
+
+</head>
+<body>
+<h1>Manga OCR</h1>
+<p>Speech bubble recognition and text extraction with OpenCV and Tesseract</p>
+<p id="status">OpenCV.js is ready.</p>
+<div>
+  <div class="inputoutput">
+    <h2>Original</h2>
+    <img id="imageSrc" alt="Input an image" style="display: none" src="blob:null/a514ac7f-9671-40ac-80a7-0e7794a1ea73">
+    <img src="img/original.png" width="905" height="1500"></img>
+  </div>
+  
+  <div class="inputoutput">
+    <h2>Image Processing</h2>
+    <table><tbody>
+<tr>
+    <th>binarization:</th><th>erosion:</th>
+    </tr>
+<tr>
+    <td><img src="img/binarization.png" width="905" height="1500"></img></td>
+    <td><img src="img/erosion.png" width="905" height="1500"></img></td>
+    </tr></tbody></table>
+    
+    <h2>Contours</h2>
+    <table><tbody>
+<tr>
+    <th>all:</th><th>pruned:</th><th>innermost:</th><th>level 2:</th><th>bubbles:</th>
+    </tr>
+<tr>
+    <td><img src="img/allContours.png" width="603" height="1000"></img></td>
+    <td><img src="img/prunedContours.png" width="603" height="1000"></img></td>
+    <td><img src="img/innermostContours.png" width="603" height="1000"></img></td>
+    <td><img src="img/level2Contours.png" width="603" height="1000"></img></td>
+    <td><img src="img/bubbleContours.png" width="603" height="1000"></img></td>
+    </tr></tbody></table>
+    
+    <h2>Bubbles</h2>
+    <table id="output-text" border="1"></table>
+    <table id="bubbles" border="1"><tbody>
+<tr><th>Bubble</th><th>Bubble Contents</th><th>Remove Furigana</th><th>OCR (horizontal)</th><th>OCR (vertical)</th><th style="padding: 0px 100px;">Text</th><th style="padding: 0px 100px;">Translated</th></tr></tbody>
+<tr><td><img src="img/bubble-0.png" width="110" height="178"></img></td><td><img src="img/bubble-contents-0.png" width="110" height="178"></img></td><td><img src="img/furigana-0.png" width="110" height="178"></img></td><td id="text-h-0"></td><td id="text-v-0"><img src="img/ocr-v-0.png" width="110" height="178"></img></td><td id="text-0" width="100"><br>シャンクス<br></td><td id="trans-0">Shanks</td></tr>
+<tr><td><img src="img/bubble-1.png" width="116" height="127"></img></td><td><img src="img/bubble-contents-1.png" width="116" height="127"></img></td><td><img src="img/furigana-1.png" width="116" height="127"></img></td><td id="text-h-1"></img></td><td id="text-v-1"><img src="img/ocr-v-1.png" width="116" height="127"></img></td><td id="text-1" width="100"><br>なんだ<br></td><td id="trans-1">it is assuredly that ...</td></tr>
+<tr><td><img src="img/bubble-2.png" width="157" height="338"></img></td><td><img src="img/bubble-contents-2.png" width="157" height="338"></img></td><td><img src="img/furigana-2.png" width="157" height="338"></img></td><td id="text-h-2"></td><td id="text-v-2"><img src="img/ocr-v-2.png" width="157" height="338"></img></td><td id="text-2" width="100"><br>そうだな ァ         もう<br><br>にの村を。 1年以上<br>拠点に     たつからな<br>旅をして<br></td><td id="trans-2">Yes, I'm already in the village. I've been based here for over a year, traveling from Tatakana.</td></tr>
+<tr><td><img src="img/bubble-3.png" width="113" height="46"></img></td><td><img src="img/bubble-contents-3.png" width="113" height="46"></img></td><td><img src="img/furigana-3.png" width="113" height="46"></img></td><td id="text-h-3"></td><td id="text-v-3"></td><td id="text-3.png" width="100"></td><td id="trans-3"></td></tr>
+<tr><td><img src="img/bubble-4.png" width="157" height="135"></img></td><td><img src="img/bubble-contents-4.png" width="157" height="135"></img></td><td><img src="img/furigana-4.png" width="157" height="135"></img></td><td id="text-h-4"></td><td id="text-v-4"><img src="img/ocr-v-4.png" width="157" height="135"></img></td><td id="text-4" width="100"><br>あと<br>2・3回<br>かァ…<br></td><td id="trans-4">Two or three more times...</td></tr>
+<tr><td><img src="img/bubble-5.png" width="62" height="129"></img></td><td><img src="img/bubble-contents-5.png" width="62" height="129"></img></td><td><img src="img/furigana-5.png" width="62" height="129"></img></td><td id="text-h-5"></td><td id="text-v-5"></img></td><td id="text-5.png" width="100"></td><td id="trans-5"></td></tr>
+<tr><td><img src="img/bubble-6.png" width="326" height="197"></img></td><td><img src="img/bubble-contents-6.png" width="326" height="197"></img></td><td><img src="img/furigana-6.png" width="326" height="197"></img></td><td id="text-h-6"></td><td id="text-v-6"><img src="img/ocr-v-6.png" width="326" height="197"></img></td><td id="text-6" width="100"><br>あと2・3回<br>航海したら<br><br>この村を離れて<br>ずっと北へ向か<br>おうと思ってる<br></td><td id="trans-6">After a couple more voyages, I'm thinking of leaving this village and heading all the way north.</td></tr>
+<tr><td><img src="img/bubble-7.png" width="184" height="161"></img></td><td><img src="img/bubble-contents-7.png" width="184" height="161"></img></td><td><img src="img/furigana-7.png" width="184" height="161"></img></td><td id="text-h-7"></td><td id="text-v-7"><img src="img/ocr-v-7.png" width="184" height="161"></img></td><td id="text-7" width="100"><br>おれ<br><br>それまでに<br>泳きの練習<br>するよ/<br></td><td id="trans-7">I'll practice swimming before then.</td></tr>
+<tr><td><img src="img/bubble-8.png" width="67" height="81"></img></td><td><img src="img/bubble-contents-8.png" width="67" height="81"></img></td><td><img src="img/furigana-8.png" width="67" height="81"></img></td><td id="text-h-8"></td><td id="text-v-8"></td><td id="text-8.png" width="100"></td><td id="trans-8"></td></tr>
+<tr><td><img src="img/bubble-9.png" width="156" height="148"></img></td><td><img src="img/bubble-contents-9.png" width="156" height="148"></img></td><td><img src="img/furigana-9.png" width="156" height="148"></img></td><td id="text-h-9"></td><td id="text-v-9"><img src="img/ocr-v-9.png" width="156" height="148"></img></td><td id="text-9" width="100"><br>そりゃ<br>いい事<br>だな/<br></td><td id="trans-9">That's a good thing.</td></tr>
+<tr><td><img src="img/bubble-10.png" width="138" height="143"></img></td><td><img src="img/bubble-contents-10.png" width="138" height="143"></img></td><td><img src="img/furigana-10.png" width="138" height="143"></img></td><td id="text-h-10"></td><td id="text-v-10"><img src="img/ocr-v-10.png" width="138" height="143"></img></td><td id="text-10" width="100"><br>勝手に<br>がんばれ<br></td><td id="trans-10">Go for it on your own.</td></tr></table>
+    
+  </div>
+</div>
+<script src="./output_files/bubble.js.download"></script>
+
+<script src="./output_files/opencv.js.download" onload="onOpenCvReady();" type="text/javascript"></script>
+<script src="./output_files/tesseract.min.js.download"></script>
+
+
+
+</body></html>
