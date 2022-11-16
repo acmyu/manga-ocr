@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<h1>Manga OCR</h1>
+<p>Speech bubble recognition and text extraction with OpenCV and Tesseract</p>
+<p id="status">OpenCV.js is loading...</p>
+<div>
+  <div class="inputoutput">
+    <h2>Parameters</h2>
+    <form id="params" action="bubble.html">
+    <div class="caption">Image: <input type="file" id="fileInput" name="file" /></div>
+    <div class="caption">Image Resize Height: <input type="number" id="resize-height" name="resize-height" value="1500" /></div>
+    <div class="caption">Binarization Blocksize: <input type="number" id="binarization-blocksize" name="binarization-blocksize" value="75" /></div>
+    <div class="caption">Binarization Subtraction: <input type="number" id="binarization-subtraction" name="binarization-subtraction" value="3" /></div>
+    <div class="caption">Erosion Kernel Size: <input type="number" id="erosion-kernel" name="erosion-kernel" value="2" /></div>
+    <div class="caption">Erosion Iterations: <input type="number" id="erosion-iterations" name="erosion-iterations" value="1" /></div>
+    <div class="caption">Min Contour Area (pixels): <input type="number" id="min-area" name="min-area" value="50" /></div>
+    <div class="caption">Max Contour Area (% of image): <input type="number" id="max-area" name="max-area" value="0.95" /></div>
+    <div class="caption">Min Bubble Area: <input type="number" id="min-bubble-area" name="min-bubble-area" value="2000" /></div>
+    <div class="caption">Shape Complexity Pruning Level: <input type="number" id="complexity-sensitivity" name="complexity-sensitivity" value="4" /></div>
+    <div class="caption">Furigana Text Detection Sensitivity Level: <input type="number" id="furigana-sensitivity" name="furigana-sensitivity" value="6" /></div>
+    <div class="caption">Furigana Max Width vs. Regular Text: <input type="number" id="furigana-width" name="furigana-width" value="0.5" /></div>
+    <div class="caption">Deepl Translator Key: <input type="text" id="deepl-key" name="deepl-key" value="" /></div>
+
+    <div class="caption">
+        Run Tesseract: <input type="checkbox" id="run-tesseract" name="run-tesseract" onchange="document.getElementById('get-additional-text').checked = this.checked" checked /> 
+        Run pass2: <input type="checkbox" id="get-additional-text" name="get-additional-text"  />
+        Verbose: <input type="checkbox" id="verbose-mode" name="verbose-mode"  checked />
+    </div>
+    
+    <input type="button" onclick="run()" value="Run">
+    </form>
+    <h2>Original</h2>
+    <img id="imageSrc" alt="Input an image" style="display: none" src="" />
+    <canvas id="original" ></canvas>
+  </div>
+  
+  <div class="inputoutput">
+    <h2>Image Processing</h2>
+    <table><tr>
+    <th>binarization:</th><th>erosion:</th>
+    </tr><tr>
+    <td><canvas id="binarization" ></canvas></td>
+    <td><canvas id="erosion" ></canvas></td>
+    </tr></table>
+    
+    <h2>Contours</h2>
+    <table><tr>
+    <th>all:</th><th>pruned:</th><th>innermost:</th><th>level 2:</th><th>bubbles:</th>
+    </tr><tr>
+    <td><canvas id="allContours" ></canvas></td>
+    <td><canvas id="prunedContours" ></canvas></td>
+    <td><canvas id="innermostContours" ></canvas></td>
+    <td><canvas id="level2Contours" ></canvas></td>
+    <td><canvas id="bubbleContours" ></canvas></td>
+    </tr></table>
+    
+    <h2>Bubbles</h2>
+    <table id="output-text" border=1></table>
+    <table id="bubbles" border=1></table>
+    
+    <h2>Additional Text</h2>
+    <p>Run OCR on the entire page to get missed speech bubbles and text outside of speech bubbles</p>
+    <p id="ocr-status"></p>
+    <p id="ocr-text"></p>
+    <canvas id="output" ></canvas>
+    
+    <h2>Final Result</h2>
+  </div>
+</div>
+<script src="bubble.js"></script>
+
+<script src='https://docs.opencv.org/4.5.5/opencv.js' onload="onOpenCvReady();" type="text/javascript"></script>
+<script src='https://unpkg.com/tesseract.js@v2.1.5/dist/tesseract.min.js'></script>
+</body>
+</html>
+
